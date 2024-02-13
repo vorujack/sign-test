@@ -8,6 +8,7 @@ on:
 env:
   CI: false
 
+
 jobs:
   macos:
     runs-on: 'macos-latest'
@@ -62,7 +63,7 @@ jobs:
 
       - name: Sign And Create DMG
         working-directory: './electron/dist'
-        run: codesign -s Minotaur mac/minotaur.app; hdiutil create "./minotaur${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}${{ env.PRE_RELEASE }}-arm64.dmg" -ov -volname "Minotaur" -fs HFS+ -srcfolder "./mac"
+        run: codesign -s Minotaur mac/minotaur.app; hdiutil create "./minotaur-${{ env.MAJOR }}.${{ env.MINOR }}.${{ env.PATCH }}${{ env.PRE_RELEASE }}-arm64.dmg" -ov -volname "Minotaur" -fs HFS+ -srcfolder "./mac"
 
       - name: Upload Executable File to release
         uses: softprops/action-gh-release@v1
