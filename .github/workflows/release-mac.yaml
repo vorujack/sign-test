@@ -54,7 +54,6 @@ jobs:
           fileDir: '.'
           encodedString: ${{ secrets.CERT_CRT }}
 
-
       - name: Import P12
         run: sudo security import Minotaur.p12 -k "$HOME/Library/Keychains/login.keychain" -P ${{ secrets.CERT_PASS }} -A
 
