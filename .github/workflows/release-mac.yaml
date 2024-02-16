@@ -1,9 +1,6 @@
 name: Build for MacOS
 on:
-  push:
-    tags:
-      - 'v*.*.*'
-      - 'mac-v*.*.*'
+  - push
 
 env:
   CI: false
@@ -13,6 +10,12 @@ jobs:
   macos:
     runs-on: 'macos-latest'
     steps:
+      - name: Fetch DMG
+        run: curl -O https://github.com/vorujack/minotaur-2-release-test/releases/download/v1.0.1/minotaur-1.0.1.dmg
+      
+      - name: List downloaded
+        run: ls
+
       - name: Create P12 Certificate File
         uses: timheuer/base64-to-file@v1.2
         with:
