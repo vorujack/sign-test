@@ -16,10 +16,18 @@ jobs:
       - name: List downloaded
         run: ls
 
-      - name: "import certificate"
+      - name: Import Certificate
         uses: apple-actions/import-codesign-certs@v1
         with: 
           p12-file-base64: ${{ secrets.CERT_P12 }}
           p12-password: ${{ secrets.CERT_PASS }}
 
+      - name: Convert Disk Image to Writable
+        run: hdiutil convert -format UDRW -o minotaur-writable.dmg minotaur-1.0.1.dmg
       
+      - name: Mount new Disk Image
+        run: hdiutil attach minotaur-writable.dmg
+      
+      - name: Sign
+        working-directory: '/Volumes/minotaur'
+        run: codesign -fs Minotaur ./minotaur.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Helpers/chrome_crashpad_handler
