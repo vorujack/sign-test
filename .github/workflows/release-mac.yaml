@@ -8,7 +8,7 @@ env:
 
 jobs:
   macos:
-    runs-on: 'macos-latest'
+    runs-on: 'macos-14'
     steps:
       - name: Fetch DMG
         run: curl -O https://github.com/vorujack/minotaur-2-release-test/releases/download/v1.0.1/minotaur-1.0.1.dmg
