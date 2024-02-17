@@ -26,7 +26,7 @@ jobs:
       #   run: hdiutil convert -format UDRW -o minotaur-writable.dmg minotaur-1.0.1.dmg
       
       - name: Mount new Disk Image
-        run: hdiutil attach minotaur-writable.dmg
+        run: hdiutil attach minotaur-1.0.1.dmg
       
       - name: Sign
         working-directory: '/Volumes/minotaur'
